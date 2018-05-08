@@ -9,7 +9,6 @@ const fs = require('fs');
 const src = __dirname;
 //从工程根目录启动，是'./node_modules/app'
 const dst = './node_modules/app';
-
 const deleteFolder = (path) => {
     let files = [];
     if (fs.existsSync(path)) {
