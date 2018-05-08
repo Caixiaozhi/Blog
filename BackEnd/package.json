@@ -4,20 +4,43 @@
   "description": "this is my first node project",
   "main": "index.js",
   "scripts": {
-    "test": "test index.js"
+    "test": "nodemon src/index.js",
+    "debug": "nodemon --inspect src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Caixiaozhi/Blog/tree/dev"
+    "url": "https://github.com/Caixiaozhi/Blog"
   },
   "keywords": [
     "koa2"
   ],
   "author": "caixiaozhi",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "es2015-node5",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-async-to-generator"
+    ]
+  },
   "dependencies": {
+    "babel-register": "^6.26.0",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "node-env-file": "^0.1.8"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "nodemon": "^1.17.4"
   }
 }
