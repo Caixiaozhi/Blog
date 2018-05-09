@@ -28,6 +28,7 @@
   "dependencies": {
     "babel-register": "^6.26.0",
     "config": "^1.30.0",
+    "date-time": "^2.1.0",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^3.2.0",
