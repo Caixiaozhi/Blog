@@ -1,7 +1,3 @@
-grant all privileges on test.* to 'www'@'%' identified by 'www';
-
-use blog;
-
 create table article (
     id int(11) not null,
     content text not null,
@@ -11,5 +7,34 @@ create table article (
     is_deleted tinyint(2) not null,
     created_at datetime not null,
     updated_at datetime not null,
+    primary key (id)
+) engine=innodb;
+
+create table comment (
+    id int(11) not null,
+    content text not null,
+    name varchar(255) not null,
+    email varchar(255) not null,
+    is_deleted tinyint(2) not null,
+    created_at datetime not null,
+    link varchar(255) not null,
+    primary key (id)
+) engine=innodb;
+
+create table tag (
+    id int(11) not null,
+    tag varchar(255) not null,
+    is_deleted tinyint(2) not null,
+    created_at datetime not null,
+    primary key (id)
+) engine=innodb;
+
+create table article_tag_relationship (
+    id int(11) not null,
+    article_id int(11) not null,
+    tag_id int(11) not null,
+    tag_order varchar(255) not null,
+    is_deleted tinyint(2) not null,
+    created_at datetime not null,
     primary key (id)
 ) engine=innodb;
