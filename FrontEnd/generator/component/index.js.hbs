@@ -1,0 +1,46 @@
+/**
+ *
+ * Name: {{ properCase name }}
+ * Date: {{ date }}
+ * Description: {{ description }}
+ * Author: {{ author }}
+ * Organization: {{ organization }}
+ *
+ */
+
+import React from 'react'
+import PropTypes from 'prop-types'
+{{#if wantLESS}}
+import styles from './styles'
+{{/if}}
+
+export default class {{ properCase name }} extends React.{{{ component }}} {
+  static propTypes = {
+    data: PropTypes.object,
+  }
+
+  static defaultProps = {
+    data: {},
+  }
+
+  state = {
+    stateData: {},
+  }
+
+  render() {
+    const {
+      data,
+    } = this.props
+    const {
+      stateData,
+    } = this.state
+    return (
+      {{#if wantLESS}}
+      <div className={{curly true}}styles.container{{curly}}>
+      {{else}}
+      <div>
+      {{/if}}
+      </div>
+    )
+  }
+}

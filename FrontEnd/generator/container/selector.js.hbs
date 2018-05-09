@@ -1,0 +1,20 @@
+/**
+ *
+ * Name: {{ properCase name }} selector
+ * Date: {{ date }}
+ * Description: {{ description }}
+ * Author: {{ author }}
+ * Organization: {{ organization }}
+ *
+ */
+
+import { createSelector } from 'reselect'
+
+const selectorDomain = (state) => state.get('{{ camelCase name }}')
+
+const selector = () => createSelector(
+  selectorDomain,
+  (substate) => substate
+)
+
+export default selector

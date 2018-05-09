@@ -1,0 +1,82 @@
+/**
+ *
+ * Name: {{ properCase name }}
+ * Date: {{ date }}
+ * Description: {{ description }}
+ * Author: {{ author }}
+ * Organization: {{ organization }}
+ *
+ */
+
+import React from 'react'
+import PropTypes from 'prop-types'
+{{#if wantActions}}
+{{#if wantReducer}}
+import { connect } from 'react-redux'
+{{/if}}
+{{/if}}
+{{#if wantActions}}
+import { bindActionCreators } from 'redux'
+import * as acts from './actions'
+{{/if}}
+{{#if wantReducer}}
+import selector from './selector'
+{{/if}}
+{{#if wantLESS}}
+import styles from './styles'
+{{/if}}
+
+class {{ properCase name }} extends React.{{{ component }}} {
+  static propTypes = {
+    data: PropTypes.object,
+  }
+
+  static defaultProps = {
+    data: {},
+  }
+
+  state = {
+    stateData: {},
+  }
+
+  render() {
+    return (
+      {{#if wantLESS}}
+      <div className={{curly true}}styles.container{{curly}}>
+      {{else}}
+      <div>
+      {{/if}}
+      </div>
+    )
+  }
+}
+
+{{#if wantReducer}}
+const mapStateToProps = () => {
+  return selector
+}
+{{/if}}
+
+{{#if wantActions}}
+const mapDispatchToProps = (dispatch) => {
+  const actions = {
+    ...acts,
+  }
+  const actionMap = {
+    actions: bindActionCreators(actions, dispatch)
+  }
+  return actionMap
+}
+{{/if}}
+
+{{#if wantActions}}
+{{#if wantReducer}}
+export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }})
+{{else}}
+export default connect(null, mapDispatchToProps)({{ properCase name }})
+{{/if}}
+{{else}}
+{{#if wantReducer}}
+export default connect(mapStateToProps, null)({{ properCase name }})
+{{/if}}
+{{/if}}

@@ -1,0 +1,36 @@
+/**
+ *
+ * Name: {{ properCase name }}
+ * Date: {{ date }}
+ * Description: {{ description }}
+ * Author: {{ author }}
+ * Organization: {{ organization }}
+ *
+ */
+
+import React from 'react'
+import PropTypes from 'prop-types'
+{{#if wantLESS}}
+import styles from './styles'
+{{/if}}
+
+export default function {{ properCase name }}({
+  data,
+}) {
+  return (
+    {{#if wantLESS}}
+    <div className={{curly true}}styles.container{{curly}}>
+    {{else}}
+    <div>
+    {{/if}}
+    </div>
+  )
+}
+
+{{ properCase name }}.propTypes = {
+  data: PropTypes.object,
+}
+
+{{ properCase name }}.default = {
+  data: {},
+}

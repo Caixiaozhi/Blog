@@ -1,0 +1,21 @@
+/**
+ *
+ * Name: {{ properCase name }} sources
+ * Date: {{ date }}
+ * Description: {{ description }}
+ * Author: {{ author }}
+ * Organization: {{ organization }}
+ *
+ */
+
+import http from '_fetch'
+
+export function request(params) {
+  return http
+    .get(`request?${params}`)
+    .then((response) => {
+      const result = response
+      return result
+    })
+    .catch((error) => {throw error})
+}
