@@ -88,11 +88,11 @@ module.exports = function (proxy, allowedHost) {
     },
     public: allowedHost,
     proxy: {
-      '/admin': {
+      '/api': {
         target: 'http://localhost:80',
         secure: false,
         changeOrigin: true,
-        pathRewrite: { "^/admin": "/admin" },
+        pathRewrite: { "^/api": "/api" },
       }
     },
     before(app) {

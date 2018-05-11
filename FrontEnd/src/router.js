@@ -34,12 +34,11 @@ const LoadComponent = (loader) => {
 const CXZ = LoadComponent(()=>(
     import('_containers/CXZ')
 ))
-const Login = LoadComponent(()=>(
-    import('_containers/Login')
+
+const Edit = LoadComponent(()=>(
+    import('_containers/Edit')
 ))
-const LoginPage = LoadComponent(()=>(
-    import('_containers/LoginPage')
-))
+
 const routes = (
             <App>
                 <Switch>
@@ -47,12 +46,13 @@ const routes = (
                         <HomePage>
                             <Switch>
                                 <Route path='/home/cxz' component={CXZ}/>
+                                <Route path='/home/edit' component={Edit} />
+                                <Redirect from='/home' to='/home/cxz' />
                             </Switch>
                         </HomePage>
                     }>
                     </Route>
-                    <Route path='/login' component={Login}/>
-                    <Route path='/login_page' component={LoginPage}/>
+                    <Redirect from='/' to='/home' />
                 </Switch>
             </App>
 );

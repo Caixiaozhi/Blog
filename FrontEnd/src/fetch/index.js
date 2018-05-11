@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const defaultConfig = {
-    baseURL: '/admin',
+    baseURL: '/api',
     timeout: 60 * 1000,
     headers: {
         'X-Requested-With': 'XMLHttpRequest',

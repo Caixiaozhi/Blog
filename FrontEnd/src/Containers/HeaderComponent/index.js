@@ -50,7 +50,7 @@ class HeaderComponent extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.title}>
-          管理端
+          TEST
               </div>
         <div className={styles.userInfo}>
           <img className={styles.avatar} src={userInfo.get('avatar')} />

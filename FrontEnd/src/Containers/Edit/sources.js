@@ -1,8 +1,8 @@
 /**
  *
- * Name: Login sources
- * Date: 2018-01-22 15:12:44
- * Description: This is a container component
+ * Name: Edit sources
+ * Date: 2018-05-10 19:52:15
+ * Description: edit article
  * Author: xiaozhi
  * Organization: ELWG
  *
