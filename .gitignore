@@ -2,6 +2,7 @@
 /BackEnd/.vscode
 /BackEnd/package-lock.json
 /BackEnd/temp
+/BackEnd/src/config
 
 /FrontEnd/package-lock.json
 /FrontEnd/node_modules
