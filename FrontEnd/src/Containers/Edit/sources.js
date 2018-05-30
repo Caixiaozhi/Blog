@@ -10,12 +10,42 @@
 
 import http from '_fetch'
 
-export function request(params) {
+export function saveArticle({
+  content,
+  title,
+  tags,
+  author,
+}) {
   return http
-    .get(`request?${params}`)
+    .post(`savetmp`, {
+      content,
+      title,
+      tags,
+      author,
+    })
     .then((response) => {
       const result = response
       return result
     })
     .catch((error) => {throw error})
+}
+
+
+export function publishArticle({
+  title,
+  author,
+  content,
+  tags,
+}){
+  console.log('1324351454',tags)
+  return http.post('article', {
+    content,
+    title,
+    tags,
+    author,
+  }).then((response) => {
+    const result = response
+    return result
+  })
+  .catch((error) => {throw error})
 }

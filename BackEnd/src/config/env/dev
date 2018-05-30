@@ -2,4 +2,4 @@
 NODE_CONFIG_DIR=./src/Config
 
 #Application
-PORT=8080
+PORT=80

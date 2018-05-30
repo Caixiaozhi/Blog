@@ -14,16 +14,28 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import E from 'wangeditor'
 import lodash from 'lodash'
+import { Input, Tag, Tooltip, Icon, Button, notification } from 'antd'
 import * as acts from './actions'
 import selector from './selector'
 import styles from './styles'
+
+const openNotifivationWithIcon = (type) => {
+  notification[type]({
+    message: '发表失败',
+    description: '请填写文章标题、标签、内容、作者',
+  })
+}
 
 class Edit extends React.Component {
   constructor(props) {
     super(props)
     this.editor = null
+    this.saveInputRef = input => this.input = input
     this.state = {
-      editorContent: ''
+      inputVisible: false,
+      inputValue: '',
+      title: '',
+      author: '',
     }
   }
   static propTypes = {
@@ -37,38 +49,151 @@ class Edit extends React.Component {
   componentDidMount() {
     const elem = this.refs.editorElem
     this.editor = new E(elem)
-    this.editor.customConfig.onchange = html => {
-      // lodash.throttle(, 100)
-      console.log('save!');
-      this.setState({
-        editorContent: html,
-      })
-    }
-    this.editor.customConfig.onchangeTimeout = 200;
-    // this.editor.$textElem[0].setAttribute('height', '500px');
+    // this.editor.customConfig.onchange = html => {
+    //   // 自动保存编辑框
+    //   // this.handleAutoComplete(html);
+    //   // console.log('save')
+    //   // this.setState({
+    //   //   editorContent: html,
+    //   // })
+    // }
+    //设置读取内容间隔为10s，这句没有起到效果
+    // this.editor.customConfig.onchangeTimeout = 10000;
+    this.editor.customConfig.uploadImgServer = '/api/picture'  // 上传图片到服务器
+    //create一个editor
     this.editor.create()
-    this.editor.$textElem[0].setAttribute('height', '100px')
+    //设置富文本编辑框的高度
+    this.editor.$textContainerElem[0].style.height = '700px'
   }
 
-  handleOnEditorContent = () => {
-    console.log(this.state.editorContent)
+  handleOnClickPublishBtn = () => {
+    const {
+      title,
+      author,
+    } = this.state
+    const {
+      tags,
+    } = this.props
+    if (title && author && (!tags.isEmpty())) {
+      // console.log('tags: ', tags.toList().toJS())
+      this.props.actions.publishArticleAction({
+        title,
+        author,
+        content: this.editor.txt.html(),
+        tags: tags.toList().toJS(),
+      })
+    } else {
+      openNotifivationWithIcon('info')
+    }
   }
 
-  handleAutoComplete = () => {
-    console.log('throttle')
+  handleInputChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    switch (name) {
+      case 'tag':
+        this.setState({
+          inputValue: value
+        })
+        break
+      case 'title':
+        this.setState({
+          title: value
+        })
+        break
+      case 'author':
+        this.setState({
+          author: value
+        })
+        break
+    }
+  }
+
+  handleInputConfirm = () => {
+    const { inputValue } = this.state
+    const { tags } = this.props
+    if (inputValue && !tags.includes(inputValue)) {
+      this.props.actions.addTagsAction({ addTag: inputValue })
+    }
+    this.setState({
+      inputVisible: false,
+      inputValue: '',
+    })
+  }
+
+  handleClose = (removedTag) => {
+    this.props.actions.deleteTagsAction({
+      removedTag,
+    })
+  }
+
+  showInput = () => {
+    this.setState({
+      inputVisible: true,
+    }, () => {
+      this.input.focus()
+    })
   }
 
   render() {
+    const {
+      tags,
+    } = this.props
+    const {
+      inputVisible,
+      inputValue,
+      title,
+      alertVisible,
+    } = this.state
     return (
       <div className={styles.container}>
-        <div ref="editorElem" style={{textAlign: 'left'}}>
+        <div>
+          <p>请输入文章标题：</p>
+          <Input name='title' placeholder='文章标题' onChange={this.handleInputChange} />
         </div>
-        <button onClick={this.handleOnEditorContent}>获取内容</button>
+        <div>
+          <p>请输入作者</p>
+          <Input name='author' placeholder='作者' onChange={this.handleInputChange} />
+        </div>
+        <div className={styles.tagsContainer}>
+          <p>文章标签</p>
+          {tags.map((tag, index) => {
+            const isLongTag = tag.length > 20
+            const tagElem = (
+              <Tag key={tag} afterClose={() => this.handleClose(tag)} closable={true}>
+                {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+              </Tag>
+            )
+            return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem
+          }).toList().toJS()}
+          {inputVisible && (
+            <Input
+              name='tag'
+              ref={this.saveInputRef}
+              type='text'
+              size='small'
+              style={{ width: 78 }}
+              value={inputValue}
+              onChange={this.handleInputChange}
+              onBlur={this.handleInputConfirm}
+              onPressEnter={this.handleInputConfirm}
+            />
+          )}
+          {!inputVisible && (
+            <Tag
+              onClick={this.showInput}
+              style={{ background: '#fff', borderStyle: 'dashed' }}
+            >
+              <Icon type='plus' />增加标签
+            </Tag>
+          )}
+        </div>
+        <div ref="editorElem" style={{ textAlign: 'left' }}></div>
+        <Button onClick={this.handleOnClickPublishBtn}>发表</Button>
       </div>
     )
   }
 }
-
 const mapStateToProps = () => {
   return selector
 }

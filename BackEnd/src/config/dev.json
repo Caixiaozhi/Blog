@@ -1,0 +1,29 @@
+{
+    "mysqlConfig": {
+        "host": "127.0.0.1",
+        "port": 3306,
+        "user": "root",
+        "database": "blog",
+        "password": "caixiaozhi"
+    },
+
+    "ossConfig": {
+        "ossUrl": "http://caixiaozhi.oss-cn-qingdao.aliyuncs.com/"
+    },
+
+    "ossFile": {
+        "picture": "pictures/"
+    },
+
+    "proxy": {
+        "url": "https://caixiaozhi.oss-cn-qingdao-aliyuncs.com/"
+    },
+
+    "ossConnectConfig": {
+        "region": "oss-cn-qingdao",
+        "accessKeyId": "LTAIOTE5xePKRWJ9",
+        "accessKeySecret": "iIDsmmG94dxpjWFlTmKGViIYem597Y",
+        "bucket": "caixiaozhi",
+        "timeout": 540000
+    }
+}

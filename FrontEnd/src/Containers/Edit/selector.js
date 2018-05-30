@@ -9,12 +9,26 @@
  */
 
 import { createSelector } from 'reselect'
+import {
+  immutableArrayEmpty,
+  immutableObjectEmpty,
+} from '_utils/constants'
 
 const selectorDomain = (state) => state.get('edit')
 
-const selector = () => createSelector(
+/* 获取标签值 */
+const tagsSelector = createSelector(
   selectorDomain,
-  (substate) => substate
+  (selectorDomain) => selectorDomain.getIn(['article', 'tags']) || immutableArrayEmpty
+)
+
+const selector = createSelector(
+  tagsSelector,
+  (
+    tags
+  ) => ({
+    tags
+  })
 )
 
 export default selector
