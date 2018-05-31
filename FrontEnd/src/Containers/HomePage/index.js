@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Layout, Menu,  Icon } from 'antd';
 import { bindActionCreators } from 'redux';
 import { get } from 'lodash';
@@ -24,8 +25,16 @@ export class HomePage extends Component {
   }
   componentWillMount() {
   }
-  handleClick = () => {
-    let count = this.state.count
+  handleClickOnMenu = (e) => {
+    const { key } = e
+    switch(key){
+      case '1': 
+        this.props.history.push('/home/edit')
+      break
+      case '2':
+        this.props.history.push('/home/cxz')
+      break
+    }
   }
   render() {
     return (
@@ -36,10 +45,13 @@ export class HomePage extends Component {
           onCollapse={this.onCollapse}
         >
           <div className={style.logo} />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+          <Menu theme="dark" 
+            defaultSelectedKeys={['1']} 
+            mode="inline"
+            onClick = {this.handleClickOnMenu}>
             <Menu.Item key="1">
               <Icon type="pie-chart" />
-              <span onClick={this.handleClick}>Option 1</span>
+              <span>编辑文章</span>
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="desktop" />
@@ -102,4 +114,4 @@ function mapDispatchToProps(dispatch) {
   return actionMap
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomePage));

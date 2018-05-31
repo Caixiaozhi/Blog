@@ -49,20 +49,8 @@ class Edit extends React.Component {
   componentDidMount() {
     const elem = this.refs.editorElem
     this.editor = new E(elem)
-    // this.editor.customConfig.onchange = html => {
-    //   // 自动保存编辑框
-    //   // this.handleAutoComplete(html);
-    //   // console.log('save')
-    //   // this.setState({
-    //   //   editorContent: html,
-    //   // })
-    // }
-    //设置读取内容间隔为10s，这句没有起到效果
-    // this.editor.customConfig.onchangeTimeout = 10000;
     this.editor.customConfig.uploadImgServer = '/api/picture'  // 上传图片到服务器
-    //create一个editor
     this.editor.create()
-    //设置富文本编辑框的高度
     this.editor.$textContainerElem[0].style.height = '700px'
   }
 

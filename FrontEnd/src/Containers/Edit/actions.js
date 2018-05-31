@@ -27,12 +27,6 @@ export const publishArticleAction = createAction(
   publishArticle,
 )
 
-/* 上传图片 */
-// export const uploadPictureAction = createAction(
-//   'SRC/EDIT/UPLOAD_PICTIRE_ACTION',
-//   uploadPicture,
-// )
-
 /* 删除标签 */
 export const deleteTagsAction = createAction(
   'SRC/EDIT/DELETE_TAGS_ACTION',

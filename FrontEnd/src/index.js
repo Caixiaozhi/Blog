@@ -23,7 +23,7 @@ render(Routes)
 //当模块更新的时候，通知index.js
 if (module.hot) {
     module.hot.accept('./router', () => {
-        render(Routes)
+        render(Routes())
     });
 }
 

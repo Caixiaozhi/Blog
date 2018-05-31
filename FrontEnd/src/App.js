@@ -16,7 +16,7 @@ class App extends Component {
 
   componentWillUnmount() {
     try {
-      document.body.removeEventListener('logout')
+      document.body.removeEventListener('logout', submitLogout)
     } catch (e) {
       console.log(e)
     }

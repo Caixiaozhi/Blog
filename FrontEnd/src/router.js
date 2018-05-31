@@ -47,7 +47,7 @@ const routes = (
                             <Switch>
                                 <Route path='/home/cxz' component={CXZ}/>
                                 <Route path='/home/edit' component={Edit} />
-                                <Redirect from='/home' to='/home/cxz' />
+                                <Redirect from='/home' to='/home/edit' />
                             </Switch>
                         </HomePage>
                     }>
