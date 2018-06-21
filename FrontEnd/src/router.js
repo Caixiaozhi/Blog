@@ -11,50 +11,56 @@ import {
 
 import App from './App.js';
 import LoadingComponent from '_containers/LoadingComponent';
-import HomePage from '_containers/HomePage';
+import AdminPage from '_containers/AdminPage';
 
 const Router = process.env.NODE_ENV === 'production' ? HashRouter : BrowserRouter;
 
 const LoadComponent = (loader) => {
     if (process.env.NODE_ENV === 'production') {
-      return Loadable({
-        loader,
-        loading: LoadingComponent,
-        delay: 500,
-      })
+        return Loadable({
+            loader,
+            loading: LoadingComponent,
+            delay: 500,
+        })
     }
     return HotLoader(
-      loader,
-      {
-        LoadingComponent,
-      }
+        loader,
+        {
+            LoadingComponent,
+        }
     )
-  }
+}
 
-const CXZ = LoadComponent(()=>(
+const CXZ = LoadComponent(() => (
     import('_containers/CXZ')
 ))
 
-const Edit = LoadComponent(()=>(
+const Edit = LoadComponent(() => (
     import('_containers/Edit')
 ))
 
+const Home = LoadComponent(() => (
+    import('_containers/Home')
+))
+
 const routes = (
-            <App>
-                <Switch>
-                    <Route path='/home' render={()=>
-                        <HomePage>
-                            <Switch>
-                                <Route path='/home/cxz' component={CXZ}/>
-                                <Route path='/home/edit' component={Edit} />
-                                <Redirect from='/home' to='/home/edit' />
-                            </Switch>
-                        </HomePage>
-                    }>
-                    </Route>
-                    <Redirect from='/' to='/home' />
-                </Switch>
-            </App>
+    <App>
+        <Switch>
+            <Route path='/home' component={Home} />
+            <Route path='/admin' render={() =>
+                <AdminPage>
+                    <Switch>
+                        <Route path='/admin/cxz' component={CXZ} />
+                        <Route path='/admin/edit' component={Edit} />
+                        <Redirect from='/admin' to='/admin/edit' />
+                    </Switch>
+                </AdminPage>
+            }>
+            </Route>
+            <Route path='/home' component={Home} />
+            <Redirect from='/' to='/home' />
+        </Switch>
+    </App>
 );
 
 export default function Routes() {

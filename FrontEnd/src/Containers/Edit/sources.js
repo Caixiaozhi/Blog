@@ -37,7 +37,6 @@ export function publishArticle({
   content,
   tags,
 }){
-  console.log('1324351454',tags)
   return http.post('article', {
     content,
     title,

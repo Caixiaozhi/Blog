@@ -1,0 +1,102 @@
+.container {
+    width: 100%;
+    height: 100%;
+    transition: all 1s ease;
+    .contentContainer {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        color: #fefefe;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: auto;
+        height: auto;
+        max-height: 80%;
+        min-width: 90%;
+        transform: translate(-50%, -50%);
+        transition: top 1s ease;
+        padding: 1em;
+    }
+    .header {
+        border-bottom: 1px solid #d3d3d3;
+        width: 100%;
+    }
+    .headerInner {
+        text-align: center;
+        h1 {
+            color: #fff;
+        }
+        p {
+            margin-top: -10px;
+        }
+    }
+    .alpha {
+        padding-top: 5px;
+        width: 100%;
+        p {
+            margin-top: 1em;
+            line-height: 180%;
+            margin-left: 0.8em;
+            padding: 0.25rem;
+            border-radius: 0.5em;
+            text-shadow: 0 1px 1px #333;
+            font-size: 14px;
+        }
+        p:hover {
+            background-color: #fefefe;
+            color: #222;
+        }
+        p:hover a {
+            // background-color: #fefefe;
+            color: #222;
+        }
+        a {
+            color: #fff;
+            text-shadow: 0 1px 1px #333;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    .pageAlpha {
+        margin-bottom: 20px;
+        p {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 0.25rem;
+            border-radius: 0.5em;
+            text-shadow: 0 1px 1px #333;
+        }
+    }
+    .footer {
+        margin: 0 1em;
+        border-top: 1px solid #d3d3d3;
+        color: #d3d3d3;
+        padding-top: 0;
+        clear: both;
+				line-height: 1.2;
+				a:hover {
+					background-color: #fefefe;
+					color: #222;
+					padding: 0.25rem;
+					border-radius: 0.5em;
+					text-decoration: underline;
+				}
+				a {
+					color: #fefefe;
+					text-shadow: 0 1px 1px #333;
+				}
+				p {
+					color: #fefefe;
+					text-shadow: 0 1px 1px #333;			
+					float: right;
+					text-align: right;
+					padding: 1.3em 0.1em 0.1em 0.3em;
+				}
+    }
+    @media all and (min-width: 771px) {
+        .contentContainer {
+            min-width: 40%;
+        }
+    }
+}

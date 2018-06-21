@@ -12,7 +12,7 @@ import HeaderComponent from '_containers/HeaderComponent';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-export class HomePage extends Component {
+export class AdminPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -29,10 +29,10 @@ export class HomePage extends Component {
     const { key } = e
     switch(key){
       case '1': 
-        this.props.history.push('/home/edit')
+        this.props.history.push('/admin/edit')
       break
       case '2':
-        this.props.history.push('/home/cxz')
+        this.props.history.push('/admin/cxz')
       break
     }
   }
@@ -114,4 +114,4 @@ function mapDispatchToProps(dispatch) {
   return actionMap
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomePage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminPage));

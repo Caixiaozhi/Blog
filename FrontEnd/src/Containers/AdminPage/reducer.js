@@ -7,7 +7,7 @@ const initialState = fromJS({
 
 
 export default handleActions({
-  'Home/HOME_INCREMENT': {
+  'Admin/ADMIN_INCREMENT': {
     next(state) {
       const next = state
         .set('count', '1')
