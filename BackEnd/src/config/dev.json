@@ -25,5 +25,9 @@
         "accessKeySecret": "iIDsmmG94dxpjWFlTmKGViIYem597Y",
         "bucket": "caixiaozhi",
         "timeout": 540000
+    },
+
+    "authConfig": {
+        "jwtSecret": "blog_auth"
     }
 }

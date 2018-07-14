@@ -12,6 +12,9 @@ import {
 import App from './App.js';
 import LoadingComponent from '_containers/LoadingComponent';
 import AdminPage from '_containers/AdminPage';
+import Contact from '_containers/Contact';
+import Blog from '_containers/Blog'
+import EditThoughts from '_containers/EditThoughts'
 
 const Router = process.env.NODE_ENV === 'production' ? HashRouter : BrowserRouter;
 
@@ -47,17 +50,18 @@ const routes = (
     <App>
         <Switch>
             <Route path='/home' component={Home} />
+            <Route path='/blog' component={Blog} />
             <Route path='/admin' render={() =>
                 <AdminPage>
                     <Switch>
-                        <Route path='/admin/cxz' component={CXZ} />
+                        <Route path='/admin/editthoughts' component={EditThoughts} />
                         <Route path='/admin/edit' component={Edit} />
                         <Redirect from='/admin' to='/admin/edit' />
                     </Switch>
                 </AdminPage>
             }>
             </Route>
-            <Route path='/home' component={Home} />
+            <Route path="/contact" component={Contact} />
             <Redirect from='/' to='/home' />
         </Switch>
     </App>

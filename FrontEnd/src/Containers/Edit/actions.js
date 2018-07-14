@@ -23,7 +23,7 @@ export const saveArticleAction = createAction(
 
 /* 发表文章 */
 export const publishArticleAction = createAction(
-  'SRC/EDIT/PUBLISHARTICLEACTION',
+  'SRC/EDIT/PUBLISH_ARTICLE_ACTION',
   publishArticle,
 )
 

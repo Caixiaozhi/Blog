@@ -9,25 +9,19 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
 import styles from './styles'
 
-class Contact extends React.PureComponent {
-
-  constructor(this) {
-    super(this)
-    this.state = {
-
-    }
+export default class CXZ extends React.Component {
+  componentWillMount(){
+    // this.props.actions.incrementAction()
   }
 
   render() {
     return (
       <div className={styles.container}>
-        联系页面
+          111222
       </div>
-    )
+    );
   }
 }
 

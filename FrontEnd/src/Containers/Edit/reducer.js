@@ -62,7 +62,7 @@ export default handleActions({
       return state
     }
   },
-  'SRC/EDIT/PUBLISHARTICLEACTION': {
+  'SRC/EDIT/PUBLISH_ARTICLE_ACTION': {
     next(state, action) {
       console.log(lodash.get(action, 'payload'))
       return state

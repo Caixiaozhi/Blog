@@ -9,23 +9,12 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
-import * as acts from './actions'
-import selector from './selector'
 import styles from './styles'
 
 class Home extends React.Component {
-  static propTypes = {
-    data: PropTypes.object,
-  }
 
-  static defaultProps = {
-    data: {},
-  }
   constructor(props) {
     super(props)
     this.state = {
@@ -82,18 +71,4 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return selector
-}
-
-const mapDispatchToProps = (dispatch) => {
-  const actions = {
-    ...acts,
-  }
-  const actionMap = {
-    actions: bindActionCreators(actions, dispatch)
-  }
-  return actionMap
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))
+export default withRouter(Home)

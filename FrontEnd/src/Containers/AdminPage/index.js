@@ -11,6 +11,10 @@ import HeaderComponent from '_containers/HeaderComponent';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+const pathNameToMenuIndex = {
+  '/admin/edit': '1',
+  '/admin/editthoughts': '2',
+}
 
 export class AdminPage extends Component {
   constructor(props) {
@@ -32,7 +36,7 @@ export class AdminPage extends Component {
         this.props.history.push('/admin/edit')
       break
       case '2':
-        this.props.history.push('/admin/cxz')
+        this.props.history.push('/admin/editthoughts')
       break
     }
   }
@@ -46,7 +50,7 @@ export class AdminPage extends Component {
         >
           <div className={style.logo} />
           <Menu theme="dark" 
-            defaultSelectedKeys={['1']} 
+            defaultSelectedKeys={[pathNameToMenuIndex[window.location.pathname]]} 
             mode="inline"
             onClick = {this.handleClickOnMenu}>
             <Menu.Item key="1">
@@ -55,7 +59,7 @@ export class AdminPage extends Component {
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="desktop" />
-              <span>Option 2</span>
+              <span>编辑想法</span>
             </Menu.Item>
             <SubMenu
               key="sub1"

@@ -12,14 +12,13 @@ import {
 import { ossFile } from 'config'
 
 const uploadPics = async (files) => {
-    //TODO: 这里有问题，没有将base64编码存储在临时目录，而是直接用本机的目录去上传了
     const opts = []
     const picsUrl = []
     let currentTime = dateTime()
     _.map(files, (file) => {
-        let { name } = file
-        file.originalname = name
-        file.filename = md5(new Buffer(`${name}.${currentTime}`)).slice(0, 15)
+        let { originalname } = file
+        // file.originalname = name
+        file.filename = md5(new Buffer(`${originalname}.${currentTime}`)).slice(0, 15)
         return file
     })
     let picsInOss = await uploadFiles(files, ossFile.picture)
@@ -28,7 +27,6 @@ const uploadPics = async (files) => {
         picsUrl.push(picUrl)
         opts.push(insertPicture(picUrl, pic))
     })
-    console.log(picsUrl,323)
     await Promise.all(opts)
     return [200, {
         errno: 0,

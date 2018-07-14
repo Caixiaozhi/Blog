@@ -1,8 +1,9 @@
 import {
-    insertArticleAndTags,
+  insertArticleAndTags,
 } from 'app/modules/article'
 
-exports.POST = async (ctx, next) => {
+export default class Article {
+  static async publish(ctx) {
     const params = ctx.request.body;
     // console.log('params:', params);
     const content = params.content
@@ -13,4 +14,5 @@ exports.POST = async (ctx, next) => {
     // ctx.status = 200;
     ctx.status = status
     ctx.body = body
+  }
 }

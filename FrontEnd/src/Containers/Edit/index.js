@@ -50,6 +50,8 @@ class Edit extends React.Component {
     const elem = this.refs.editorElem
     this.editor = new E(elem)
     this.editor.customConfig.uploadImgServer = '/api/picture'  // 上传图片到服务器
+    this.editor.customConfig.uploadImgMaxLength = 5
+    this.editor.customConfig.uploadFileName = 'files'
     this.editor.create()
     this.editor.$textContainerElem[0].style.height = '700px'
   }
